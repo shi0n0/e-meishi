@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({super.key});
@@ -55,7 +56,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
               CustomPage(
                 imagePath: 'assets/images/meishi.png',
                 title: 'こんにちは、ようこそ！',
-                description: 'このアプリで名刺を管理すれば時間をかけて名刺を探す必要がなくなります',
+                description: 'e名刺で名刺を管理すれば時間をかけて名刺を探す必要がなくなります',
               ),
               CustomPage(
                 imagePath: 'assets/images/meishi.png',
@@ -77,6 +78,27 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                   title: '名刺を登録しましょう',
                   description: '始めるボタンを押すと名刺登録ページに進みます。')
             ],
+          ),
+          Positioned(
+            bottom: 250,
+            left: 0,
+            right: 0,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: SmoothPageIndicator(
+                controller: _pageController,
+                count: 5,
+                effect:
+                    const SwapEffect(dotHeight: 16, dotWidth: 32, spacing: 15),
+                onDotClicked: (index) {
+                  _pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+            ),
           ),
           Positioned(
             bottom: 100,
