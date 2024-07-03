@@ -61,15 +61,13 @@ flutter_native_splash:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/splash.png
-    - assets/images/splash_android12.png
+    - assets/images/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
