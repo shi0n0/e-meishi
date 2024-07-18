@@ -33,15 +33,38 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _initializeControllerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return CameraPreview(_controller);
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
+    return Stack(
+      children: [
+        FutureBuilder(
+          future: _initializeControllerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return CameraPreview(_controller);
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 60),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white70,
+                fixedSize: const Size(80, 80),
+                side: const BorderSide(
+                  color: Colors.white,
+                  width: 4.0,
+                ),
+                shape: const CircleBorder(),
+              ),
+              onPressed: () {},
+              child: const SizedBox(),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
