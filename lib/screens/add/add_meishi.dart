@@ -1,5 +1,5 @@
 import 'package:camera/camera.dart';
-import 'package:e_meishi/components/camera_screen.dart';
+import 'package:e_meishi/screens/add/camera_screen.dart';
 import 'package:flutter/material.dart';
 
 class AddMeishiScreen extends StatefulWidget {
