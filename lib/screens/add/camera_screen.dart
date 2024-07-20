@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../components/capture_button.dart';
+import 'display_picture_screen.dart';
 
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -53,7 +55,10 @@ class _CameraScreenState extends State<CameraScreen> {
               child: CaptureButton(
                 onPressed: () async {
                   final image = await _controller.takePicture();
-                  print(image.path);
+                  if (context.mounted) {
+                    context.go(
+                        '/display_picture?imagePath=${Uri.encodeComponent(image.path)}');
+                  }
                 },
               )),
         ),
