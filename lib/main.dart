@@ -1,4 +1,5 @@
 import 'package:e_meishi/screens/add/add_meishi.dart';
+import 'package:e_meishi/screens/add/display_picture_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/Introduction/introduction_screen.dart';
@@ -20,12 +21,10 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final bool firstLaunch;
-  final CameraDescription firstCamera; 
+  final CameraDescription firstCamera;
 
   const MyApp(
-      {super.key,
-      required this.firstLaunch,
-      required this.firstCamera}); 
+      {super.key, required this.firstLaunch, required this.firstCamera});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,16 @@ class MyApp extends StatelessWidget {
           path: '/add/meishi',
           builder: (BuildContext context, GoRouterState state) {
             return AddMeishiScreen(camera: firstCamera);
-          })
+          }),
+      GoRoute(
+        path: '/display_picture',
+        builder: (BuildContext context, GoRouterState state) {
+          final imagePath = state.uri.queryParameters['imagePath']!;
+          return DisplayPictureScreen(
+            imagePath: imagePath,
+          );
+        },
+      ),
     ]);
 
     return MaterialApp.router(
