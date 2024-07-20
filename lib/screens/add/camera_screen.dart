@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import '../../components/capture_button.dart';
 
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -48,21 +49,12 @@ class _CameraScreenState extends State<CameraScreen> {
         Padding(
           padding: const EdgeInsets.only(bottom: 60),
           child: Align(
-            alignment: Alignment.bottomCenter,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.white70,
-                fixedSize: const Size(80, 80),
-                side: const BorderSide(
-                  color: Colors.white,
-                  width: 4.0,
-                ),
-                shape: const CircleBorder(),
-              ),
-              onPressed: () {},
-              child: const SizedBox(),
-            ),
-          ),
+              alignment: Alignment.bottomCenter,
+              child: CaptureButton(
+                onPressed: () {
+                  print('撮影');
+                },
+              )),
         ),
       ],
     );
