@@ -51,8 +51,9 @@ class _CameraScreenState extends State<CameraScreen> {
           child: Align(
               alignment: Alignment.bottomCenter,
               child: CaptureButton(
-                onPressed: () {
-                  print('撮影');
+                onPressed: () async {
+                  final image = await _controller.takePicture();
+                  print(image.path);
                 },
               )),
         ),
