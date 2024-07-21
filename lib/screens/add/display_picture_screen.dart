@@ -26,14 +26,26 @@ class DisplayPictureScreen extends StatelessWidget {
               bottom: 20, // 画像の下からの距離を指定
               left: 0,
               right: 0,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.pop(); // 撮り直しボタンを押すとカメラ画面に戻る
-                  },
-                  child: const Text('撮り直し'),
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.pop(); // 撮り直しボタンを押すとカメラ画面に戻る
+                      },
+                      child: const Text('撮り直し'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('確定'),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
