@@ -41,7 +41,9 @@ class DisplayPictureScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _showLoadingDialog(context);
+                      },
                       child: const Text('確定'),
                     ),
                   ),
@@ -51,6 +53,28 @@ class DisplayPictureScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Dialog(
+          child: Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(width: 20),
+                Text("Loading..."),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
