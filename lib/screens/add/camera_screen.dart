@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../components/capture_button.dart';
+import 'package:e_meishi/components/capture_button.dart';
 
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
