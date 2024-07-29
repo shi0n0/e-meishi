@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:e_meishi/utils/utils.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
   const DisplayPictureScreen({super.key, required this.imagePath});
@@ -42,7 +43,7 @@ class DisplayPictureScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        _showLoadingDialog(context);
+                        showLoadingDialog(context, '処理中です');
                       },
                       child: const Text('確定'),
                     ),
@@ -53,28 +54,6 @@ class DisplayPictureScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void _showLoadingDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return const Dialog(
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CircularProgressIndicator(),
-                SizedBox(width: 20),
-                Text("Loading..."),
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }
