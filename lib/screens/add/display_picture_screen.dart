@@ -1,7 +1,11 @@
 import 'dart:io';
+import 'dart:math';
+import 'package:isar/isar.dart';
+import 'package:e_meishi/models/my_meishi.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:e_meishi/utils/utils.dart';
+import 'package:path_provider/path_provider.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
   const DisplayPictureScreen({super.key, required this.imagePath});
@@ -42,10 +46,31 @@ class DisplayPictureScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        // ローディングダイアログを表示
                         showLoadingDialog(context, '処理中です');
+
+                        try {
+                          // 非同期処理
+                          final myMeishi = MyMeishi()..imagePath = imagePath;
+                          final dir = await getApplicationDocumentsDirectory();
+                          final isar = await Isar.open(
+                            [MyMeishiSchema],
+                            directory: dir.path,
+                          );
+
+                          await isar.writeTxn(() async {
+                            await isar.myMeishis.put(myMeishi);
+                          });
+                        } catch (e) {
+                          print('エラーが発生しました$e');
+                        } finally {
+                          if (context.mounted) {
+                            Navigator.of(context, rootNavigator: true).pop();
+                          }
+                        }
                       },
-                      child: const Text('確定'),
+                      child: const Text('保存'),
                     ),
                   ),
                 ],
