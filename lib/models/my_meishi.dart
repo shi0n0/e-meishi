@@ -6,5 +6,6 @@ part 'my_meishi.g.dart';
 class MyMeishi {
   Id id = Isar.autoIncrement;
 
-  late String imagePath;
+  @Index(unique: true)
+  late String meishiId;
 }

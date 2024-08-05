@@ -17,9 +17,9 @@ const MyMeishiSchema = CollectionSchema(
   name: r'MyMeishi',
   id: 4930483010203323772,
   properties: {
-    r'imagePath': PropertySchema(
+    r'meishiId': PropertySchema(
       id: 0,
-      name: r'imagePath',
+      name: r'meishiId',
       type: IsarType.string,
     )
   },
@@ -28,7 +28,21 @@ const MyMeishiSchema = CollectionSchema(
   deserialize: _myMeishiDeserialize,
   deserializeProp: _myMeishiDeserializeProp,
   idName: r'id',
-  indexes: {},
+  indexes: {
+    r'meishiId': IndexSchema(
+      id: -3138573199007313671,
+      name: r'meishiId',
+      unique: true,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'meishiId',
+          type: IndexType.hash,
+          caseSensitive: true,
+        )
+      ],
+    )
+  },
   links: {},
   embeddedSchemas: {},
   getId: _myMeishiGetId,
@@ -43,7 +57,7 @@ int _myMeishiEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.imagePath.length * 3;
+  bytesCount += 3 + object.meishiId.length * 3;
   return bytesCount;
 }
 
@@ -53,7 +67,7 @@ void _myMeishiSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.imagePath);
+  writer.writeString(offsets[0], object.meishiId);
 }
 
 MyMeishi _myMeishiDeserialize(
@@ -64,7 +78,7 @@ MyMeishi _myMeishiDeserialize(
 ) {
   final object = MyMeishi();
   object.id = id;
-  object.imagePath = reader.readString(offsets[0]);
+  object.meishiId = reader.readString(offsets[0]);
   return object;
 }
 
@@ -92,6 +106,61 @@ List<IsarLinkBase<dynamic>> _myMeishiGetLinks(MyMeishi object) {
 
 void _myMeishiAttach(IsarCollection<dynamic> col, Id id, MyMeishi object) {
   object.id = id;
+}
+
+extension MyMeishiByIndex on IsarCollection<MyMeishi> {
+  Future<MyMeishi?> getByMeishiId(String meishiId) {
+    return getByIndex(r'meishiId', [meishiId]);
+  }
+
+  MyMeishi? getByMeishiIdSync(String meishiId) {
+    return getByIndexSync(r'meishiId', [meishiId]);
+  }
+
+  Future<bool> deleteByMeishiId(String meishiId) {
+    return deleteByIndex(r'meishiId', [meishiId]);
+  }
+
+  bool deleteByMeishiIdSync(String meishiId) {
+    return deleteByIndexSync(r'meishiId', [meishiId]);
+  }
+
+  Future<List<MyMeishi?>> getAllByMeishiId(List<String> meishiIdValues) {
+    final values = meishiIdValues.map((e) => [e]).toList();
+    return getAllByIndex(r'meishiId', values);
+  }
+
+  List<MyMeishi?> getAllByMeishiIdSync(List<String> meishiIdValues) {
+    final values = meishiIdValues.map((e) => [e]).toList();
+    return getAllByIndexSync(r'meishiId', values);
+  }
+
+  Future<int> deleteAllByMeishiId(List<String> meishiIdValues) {
+    final values = meishiIdValues.map((e) => [e]).toList();
+    return deleteAllByIndex(r'meishiId', values);
+  }
+
+  int deleteAllByMeishiIdSync(List<String> meishiIdValues) {
+    final values = meishiIdValues.map((e) => [e]).toList();
+    return deleteAllByIndexSync(r'meishiId', values);
+  }
+
+  Future<Id> putByMeishiId(MyMeishi object) {
+    return putByIndex(r'meishiId', object);
+  }
+
+  Id putByMeishiIdSync(MyMeishi object, {bool saveLinks = true}) {
+    return putByIndexSync(r'meishiId', object, saveLinks: saveLinks);
+  }
+
+  Future<List<Id>> putAllByMeishiId(List<MyMeishi> objects) {
+    return putAllByIndex(r'meishiId', objects);
+  }
+
+  List<Id> putAllByMeishiIdSync(List<MyMeishi> objects,
+      {bool saveLinks = true}) {
+    return putAllByIndexSync(r'meishiId', objects, saveLinks: saveLinks);
+  }
 }
 
 extension MyMeishiQueryWhereSort on QueryBuilder<MyMeishi, MyMeishi, QWhere> {
@@ -167,6 +236,51 @@ extension MyMeishiQueryWhere on QueryBuilder<MyMeishi, MyMeishi, QWhereClause> {
       ));
     });
   }
+
+  QueryBuilder<MyMeishi, MyMeishi, QAfterWhereClause> meishiIdEqualTo(
+      String meishiId) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'meishiId',
+        value: [meishiId],
+      ));
+    });
+  }
+
+  QueryBuilder<MyMeishi, MyMeishi, QAfterWhereClause> meishiIdNotEqualTo(
+      String meishiId) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'meishiId',
+              lower: [],
+              upper: [meishiId],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'meishiId',
+              lower: [meishiId],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'meishiId',
+              lower: [meishiId],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'meishiId',
+              lower: [],
+              upper: [meishiId],
+              includeUpper: false,
+            ));
+      }
+    });
+  }
 }
 
 extension MyMeishiQueryFilter
@@ -223,20 +337,20 @@ extension MyMeishiQueryFilter
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathEqualTo(
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'imagePath',
+        property: r'meishiId',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathGreaterThan(
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -244,14 +358,14 @@ extension MyMeishiQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'imagePath',
+        property: r'meishiId',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathLessThan(
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -259,14 +373,14 @@ extension MyMeishiQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'imagePath',
+        property: r'meishiId',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathBetween(
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -275,7 +389,7 @@ extension MyMeishiQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'imagePath',
+        property: r'meishiId',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -285,70 +399,69 @@ extension MyMeishiQueryFilter
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathStartsWith(
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'imagePath',
+        property: r'meishiId',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathEndsWith(
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'imagePath',
+        property: r'meishiId',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathContains(
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'imagePath',
+        property: r'meishiId',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathMatches(
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'imagePath',
+        property: r'meishiId',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> imagePathIsEmpty() {
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'imagePath',
+        property: r'meishiId',
         value: '',
       ));
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition>
-      imagePathIsNotEmpty() {
+  QueryBuilder<MyMeishi, MyMeishi, QAfterFilterCondition> meishiIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'imagePath',
+        property: r'meishiId',
         value: '',
       ));
     });
@@ -362,15 +475,15 @@ extension MyMeishiQueryLinks
     on QueryBuilder<MyMeishi, MyMeishi, QFilterCondition> {}
 
 extension MyMeishiQuerySortBy on QueryBuilder<MyMeishi, MyMeishi, QSortBy> {
-  QueryBuilder<MyMeishi, MyMeishi, QAfterSortBy> sortByImagePath() {
+  QueryBuilder<MyMeishi, MyMeishi, QAfterSortBy> sortByMeishiId() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'imagePath', Sort.asc);
+      return query.addSortBy(r'meishiId', Sort.asc);
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterSortBy> sortByImagePathDesc() {
+  QueryBuilder<MyMeishi, MyMeishi, QAfterSortBy> sortByMeishiIdDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'imagePath', Sort.desc);
+      return query.addSortBy(r'meishiId', Sort.desc);
     });
   }
 }
@@ -389,25 +502,25 @@ extension MyMeishiQuerySortThenBy
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterSortBy> thenByImagePath() {
+  QueryBuilder<MyMeishi, MyMeishi, QAfterSortBy> thenByMeishiId() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'imagePath', Sort.asc);
+      return query.addSortBy(r'meishiId', Sort.asc);
     });
   }
 
-  QueryBuilder<MyMeishi, MyMeishi, QAfterSortBy> thenByImagePathDesc() {
+  QueryBuilder<MyMeishi, MyMeishi, QAfterSortBy> thenByMeishiIdDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'imagePath', Sort.desc);
+      return query.addSortBy(r'meishiId', Sort.desc);
     });
   }
 }
 
 extension MyMeishiQueryWhereDistinct
     on QueryBuilder<MyMeishi, MyMeishi, QDistinct> {
-  QueryBuilder<MyMeishi, MyMeishi, QDistinct> distinctByImagePath(
+  QueryBuilder<MyMeishi, MyMeishi, QDistinct> distinctByMeishiId(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'imagePath', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'meishiId', caseSensitive: caseSensitive);
     });
   }
 }
@@ -420,9 +533,9 @@ extension MyMeishiQueryProperty
     });
   }
 
-  QueryBuilder<MyMeishi, String, QQueryOperations> imagePathProperty() {
+  QueryBuilder<MyMeishi, String, QQueryOperations> meishiIdProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'imagePath');
+      return query.addPropertyName(r'meishiId');
     });
   }
 }

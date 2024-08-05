@@ -1,9 +1,9 @@
 import 'package:isar/isar.dart';
 
-part 'other_meishi.g.dart';
+part 'meishi.g.dart';
 
 @collection
-class OtherMeishi {
+class Meishi {
   Id id = Isar.autoIncrement;
 
   late String imagePath;

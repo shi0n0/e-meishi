@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'other_meishi.dart';
+part of 'meishi.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,13 +9,13 @@ part of 'other_meishi.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetOtherMeishiCollection on Isar {
-  IsarCollection<OtherMeishi> get otherMeishis => this.collection();
+extension GetMeishiCollection on Isar {
+  IsarCollection<Meishi> get meishis => this.collection();
 }
 
-const OtherMeishiSchema = CollectionSchema(
-  name: r'OtherMeishi',
-  id: -1612449590603980131,
+const MeishiSchema = CollectionSchema(
+  name: r'Meishi',
+  id: -6852813502836494271,
   properties: {
     r'addedTime': PropertySchema(
       id: 0,
@@ -28,22 +28,22 @@ const OtherMeishiSchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _otherMeishiEstimateSize,
-  serialize: _otherMeishiSerialize,
-  deserialize: _otherMeishiDeserialize,
-  deserializeProp: _otherMeishiDeserializeProp,
+  estimateSize: _meishiEstimateSize,
+  serialize: _meishiSerialize,
+  deserialize: _meishiDeserialize,
+  deserializeProp: _meishiDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _otherMeishiGetId,
-  getLinks: _otherMeishiGetLinks,
-  attach: _otherMeishiAttach,
+  getId: _meishiGetId,
+  getLinks: _meishiGetLinks,
+  attach: _meishiAttach,
   version: '3.1.0+1',
 );
 
-int _otherMeishiEstimateSize(
-  OtherMeishi object,
+int _meishiEstimateSize(
+  Meishi object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -52,8 +52,8 @@ int _otherMeishiEstimateSize(
   return bytesCount;
 }
 
-void _otherMeishiSerialize(
-  OtherMeishi object,
+void _meishiSerialize(
+  Meishi object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -62,20 +62,20 @@ void _otherMeishiSerialize(
   writer.writeString(offsets[1], object.imagePath);
 }
 
-OtherMeishi _otherMeishiDeserialize(
+Meishi _meishiDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = OtherMeishi();
+  final object = Meishi();
   object.addedTime = reader.readDateTime(offsets[0]);
   object.id = id;
   object.imagePath = reader.readString(offsets[1]);
   return object;
 }
 
-P _otherMeishiDeserializeProp<P>(
+P _meishiDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -91,31 +91,28 @@ P _otherMeishiDeserializeProp<P>(
   }
 }
 
-Id _otherMeishiGetId(OtherMeishi object) {
+Id _meishiGetId(Meishi object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _otherMeishiGetLinks(OtherMeishi object) {
+List<IsarLinkBase<dynamic>> _meishiGetLinks(Meishi object) {
   return [];
 }
 
-void _otherMeishiAttach(
-    IsarCollection<dynamic> col, Id id, OtherMeishi object) {
+void _meishiAttach(IsarCollection<dynamic> col, Id id, Meishi object) {
   object.id = id;
 }
 
-extension OtherMeishiQueryWhereSort
-    on QueryBuilder<OtherMeishi, OtherMeishi, QWhere> {
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterWhere> anyId() {
+extension MeishiQueryWhereSort on QueryBuilder<Meishi, Meishi, QWhere> {
+  QueryBuilder<Meishi, Meishi, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension OtherMeishiQueryWhere
-    on QueryBuilder<OtherMeishi, OtherMeishi, QWhereClause> {
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterWhereClause> idEqualTo(Id id) {
+extension MeishiQueryWhere on QueryBuilder<Meishi, Meishi, QWhereClause> {
+  QueryBuilder<Meishi, Meishi, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -124,8 +121,7 @@ extension OtherMeishiQueryWhere
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterWhereClause> idNotEqualTo(
-      Id id) {
+  QueryBuilder<Meishi, Meishi, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -147,7 +143,7 @@ extension OtherMeishiQueryWhere
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterWhereClause> idGreaterThan(Id id,
+  QueryBuilder<Meishi, Meishi, QAfterWhereClause> idGreaterThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -156,7 +152,7 @@ extension OtherMeishiQueryWhere
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterWhereClause> idLessThan(Id id,
+  QueryBuilder<Meishi, Meishi, QAfterWhereClause> idLessThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -165,7 +161,7 @@ extension OtherMeishiQueryWhere
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterWhereClause> idBetween(
+  QueryBuilder<Meishi, Meishi, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -182,10 +178,9 @@ extension OtherMeishiQueryWhere
   }
 }
 
-extension OtherMeishiQueryFilter
-    on QueryBuilder<OtherMeishi, OtherMeishi, QFilterCondition> {
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      addedTimeEqualTo(DateTime value) {
+extension MeishiQueryFilter on QueryBuilder<Meishi, Meishi, QFilterCondition> {
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> addedTimeEqualTo(
+      DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'addedTime',
@@ -194,8 +189,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      addedTimeGreaterThan(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> addedTimeGreaterThan(
     DateTime value, {
     bool include = false,
   }) {
@@ -208,8 +202,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      addedTimeLessThan(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> addedTimeLessThan(
     DateTime value, {
     bool include = false,
   }) {
@@ -222,8 +215,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      addedTimeBetween(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> addedTimeBetween(
     DateTime lower,
     DateTime upper, {
     bool includeLower = true,
@@ -240,8 +232,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition> idEqualTo(
-      Id value) {
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -250,7 +241,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
   }) {
@@ -263,7 +254,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition> idLessThan(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
   }) {
@@ -276,7 +267,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition> idBetween(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -293,8 +284,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathEqualTo(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -307,8 +297,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathGreaterThan(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -323,8 +312,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathLessThan(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -339,8 +327,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathBetween(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -359,8 +346,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathStartsWith(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -373,8 +359,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathEndsWith(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -387,8 +372,9 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathContains(
+      String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'imagePath',
@@ -398,8 +384,9 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'imagePath',
@@ -409,8 +396,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathIsEmpty() {
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'imagePath',
@@ -419,8 +405,7 @@ extension OtherMeishiQueryFilter
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterFilterCondition>
-      imagePathIsNotEmpty() {
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'imagePath',
@@ -430,87 +415,82 @@ extension OtherMeishiQueryFilter
   }
 }
 
-extension OtherMeishiQueryObject
-    on QueryBuilder<OtherMeishi, OtherMeishi, QFilterCondition> {}
+extension MeishiQueryObject on QueryBuilder<Meishi, Meishi, QFilterCondition> {}
 
-extension OtherMeishiQueryLinks
-    on QueryBuilder<OtherMeishi, OtherMeishi, QFilterCondition> {}
+extension MeishiQueryLinks on QueryBuilder<Meishi, Meishi, QFilterCondition> {}
 
-extension OtherMeishiQuerySortBy
-    on QueryBuilder<OtherMeishi, OtherMeishi, QSortBy> {
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> sortByAddedTime() {
+extension MeishiQuerySortBy on QueryBuilder<Meishi, Meishi, QSortBy> {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> sortByAddedTime() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'addedTime', Sort.asc);
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> sortByAddedTimeDesc() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> sortByAddedTimeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'addedTime', Sort.desc);
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> sortByImagePath() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> sortByImagePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imagePath', Sort.asc);
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> sortByImagePathDesc() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> sortByImagePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imagePath', Sort.desc);
     });
   }
 }
 
-extension OtherMeishiQuerySortThenBy
-    on QueryBuilder<OtherMeishi, OtherMeishi, QSortThenBy> {
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> thenByAddedTime() {
+extension MeishiQuerySortThenBy on QueryBuilder<Meishi, Meishi, QSortThenBy> {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByAddedTime() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'addedTime', Sort.asc);
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> thenByAddedTimeDesc() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByAddedTimeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'addedTime', Sort.desc);
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> thenById() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> thenByImagePath() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByImagePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imagePath', Sort.asc);
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QAfterSortBy> thenByImagePathDesc() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByImagePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imagePath', Sort.desc);
     });
   }
 }
 
-extension OtherMeishiQueryWhereDistinct
-    on QueryBuilder<OtherMeishi, OtherMeishi, QDistinct> {
-  QueryBuilder<OtherMeishi, OtherMeishi, QDistinct> distinctByAddedTime() {
+extension MeishiQueryWhereDistinct on QueryBuilder<Meishi, Meishi, QDistinct> {
+  QueryBuilder<Meishi, Meishi, QDistinct> distinctByAddedTime() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'addedTime');
     });
   }
 
-  QueryBuilder<OtherMeishi, OtherMeishi, QDistinct> distinctByImagePath(
+  QueryBuilder<Meishi, Meishi, QDistinct> distinctByImagePath(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'imagePath', caseSensitive: caseSensitive);
@@ -518,21 +498,20 @@ extension OtherMeishiQueryWhereDistinct
   }
 }
 
-extension OtherMeishiQueryProperty
-    on QueryBuilder<OtherMeishi, OtherMeishi, QQueryProperty> {
-  QueryBuilder<OtherMeishi, int, QQueryOperations> idProperty() {
+extension MeishiQueryProperty on QueryBuilder<Meishi, Meishi, QQueryProperty> {
+  QueryBuilder<Meishi, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<OtherMeishi, DateTime, QQueryOperations> addedTimeProperty() {
+  QueryBuilder<Meishi, DateTime, QQueryOperations> addedTimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'addedTime');
     });
   }
 
-  QueryBuilder<OtherMeishi, String, QQueryOperations> imagePathProperty() {
+  QueryBuilder<Meishi, String, QQueryOperations> imagePathProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imagePath');
     });
