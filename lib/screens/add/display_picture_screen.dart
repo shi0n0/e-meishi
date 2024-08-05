@@ -1,7 +1,6 @@
 import 'dart:io';
-import 'dart:math';
 import 'package:isar/isar.dart';
-import 'package:e_meishi/models/my_meishi.dart';
+import 'package:e_meishi/models/meishi.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:e_meishi/utils/utils.dart';
@@ -52,15 +51,15 @@ class DisplayPictureScreen extends StatelessWidget {
 
                         try {
                           // 非同期処理
-                          final myMeishi = MyMeishi()..imagePath = imagePath;
+                          final myMeishi = Meishi()..imagePath = imagePath;
                           final dir = await getApplicationDocumentsDirectory();
                           final isar = await Isar.open(
-                            [MyMeishiSchema],
+                            [MeishiSchema],
                             directory: dir.path,
                           );
 
                           await isar.writeTxn(() async {
-                            await isar.myMeishis.put(myMeishi);
+                            await isar.meishis.put(myMeishi);
                           });
                         } catch (e) {
                           print('エラーが発生しました$e');
