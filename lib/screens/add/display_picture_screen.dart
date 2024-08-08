@@ -51,7 +51,7 @@ class DisplayPictureScreen extends StatelessWidget {
 
                         try {
                           // 非同期処理
-                          final myMeishi = Meishi()..imagePath = imagePath;
+                          final meishi = Meishi()..imagePath = imagePath;
                           final dir = await getApplicationDocumentsDirectory();
                           final isar = await Isar.open(
                             [MeishiSchema],
@@ -59,7 +59,7 @@ class DisplayPictureScreen extends StatelessWidget {
                           );
 
                           await isar.writeTxn(() async {
-                            await isar.meishis.put(myMeishi);
+                            await isar.meishis.put(meishi);
                           });
                         } catch (e) {
                           print('エラーが発生しました$e');
