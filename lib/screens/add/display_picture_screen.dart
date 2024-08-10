@@ -63,11 +63,9 @@ class DisplayPictureScreen extends StatelessWidget {
                           });
                         } catch (e) {
                           if (context.mounted) {
-                            showErrorDialog(context, '$e');
-                          }
-                        } finally {
-                          if (context.mounted) {
                             Navigator.of(context, rootNavigator: true).pop();
+
+                            showErrorDialog(context, '$e');
                           }
                         }
                       },
