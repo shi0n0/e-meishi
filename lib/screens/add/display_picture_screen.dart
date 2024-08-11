@@ -62,10 +62,10 @@ class DisplayPictureScreen extends StatelessWidget {
                             await isar.meishis.put(meishi);
                           });
                         } catch (e) {
-                          print('エラーが発生しました$e');
-                        } finally {
                           if (context.mounted) {
                             Navigator.of(context, rootNavigator: true).pop();
+
+                            showErrorDialog(context, '$e');
                           }
                         }
                       },
