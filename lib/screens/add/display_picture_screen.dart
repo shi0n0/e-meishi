@@ -63,6 +63,12 @@ class DisplayPictureScreen extends StatelessWidget {
                           await isar.writeTxn(() async {
                             await isar.meishis.put(meishi);
                           });
+
+                          if (context.mounted) {
+                            Navigator.of(context, rootNavigator: true).pop();
+
+                            showCheckDialog(context);
+                          }
                         } catch (e) {
                           if (context.mounted) {
                             Navigator.of(context, rootNavigator: true).pop();
