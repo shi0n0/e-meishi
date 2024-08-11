@@ -51,7 +51,9 @@ class DisplayPictureScreen extends StatelessWidget {
 
                         try {
                           // 非同期処理
-                          final meishi = Meishi()..imagePath = imagePath;
+                          final meishi = Meishi()
+                            ..imagePath = imagePath
+                            ..addedTime = DateTime.now();
                           final dir = await getApplicationDocumentsDirectory();
                           final isar = await Isar.open(
                             [MeishiSchema],
