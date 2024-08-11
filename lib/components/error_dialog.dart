@@ -16,7 +16,10 @@ class ErrorDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('❌', style: TextStyle(fontSize: 40)),
-            Text('エラーが発生しました:$errorMessage'),
+            Text(
+              'エラーが発生しました\n$errorMessage',
+              textAlign: TextAlign.center,
+            ),
             TextButton(
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop();
