@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 
-part 'meishi.g.dart';
+part 'my_meishi_history.g.dart';
 
 @collection
 class MyMeishiHistory {
