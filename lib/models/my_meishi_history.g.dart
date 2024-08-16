@@ -27,8 +27,13 @@ const MyMeishiHistorySchema = CollectionSchema(
       name: r'meishiId',
       type: IsarType.long,
     ),
-    r'version': PropertySchema(
+    r'updatedAt': PropertySchema(
       id: 2,
+      name: r'updatedAt',
+      type: IsarType.dateTime,
+    ),
+    r'version': PropertySchema(
+      id: 3,
       name: r'version',
       type: IsarType.long,
     )
@@ -65,7 +70,8 @@ void _myMeishiHistorySerialize(
 ) {
   writer.writeString(offsets[0], object.imagePath);
   writer.writeLong(offsets[1], object.meishiId);
-  writer.writeLong(offsets[2], object.version);
+  writer.writeDateTime(offsets[2], object.updatedAt);
+  writer.writeLong(offsets[3], object.version);
 }
 
 MyMeishiHistory _myMeishiHistoryDeserialize(
@@ -77,7 +83,8 @@ MyMeishiHistory _myMeishiHistoryDeserialize(
   final object = MyMeishiHistory();
   object.id = id;
   object.imagePath = reader.readString(offsets[0]);
-  object.version = reader.readLong(offsets[2]);
+  object.updatedAt = reader.readDateTime(offsets[2]);
+  object.version = reader.readLong(offsets[3]);
   return object;
 }
 
@@ -93,6 +100,8 @@ P _myMeishiHistoryDeserializeProp<P>(
     case 1:
       return (reader.readLong(offset)) as P;
     case 2:
+      return (reader.readDateTime(offset)) as P;
+    case 3:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -443,6 +452,62 @@ extension MyMeishiHistoryQueryFilter
   }
 
   QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterFilterCondition>
+      updatedAtEqualTo(DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterFilterCondition>
+      updatedAtGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterFilterCondition>
+      updatedAtLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterFilterCondition>
+      updatedAtBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'updatedAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterFilterCondition>
       versionEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -535,6 +600,20 @@ extension MyMeishiHistoryQuerySortBy
     });
   }
 
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterSortBy>
+      sortByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterSortBy>
+      sortByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
+    });
+  }
+
   QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterSortBy> sortByVersion() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'version', Sort.asc);
@@ -591,6 +670,20 @@ extension MyMeishiHistoryQuerySortThenBy
     });
   }
 
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterSortBy>
+      thenByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterSortBy>
+      thenByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
+    });
+  }
+
   QueryBuilder<MyMeishiHistory, MyMeishiHistory, QAfterSortBy> thenByVersion() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'version', Sort.asc);
@@ -622,6 +715,13 @@ extension MyMeishiHistoryQueryWhereDistinct
   }
 
   QueryBuilder<MyMeishiHistory, MyMeishiHistory, QDistinct>
+      distinctByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'updatedAt');
+    });
+  }
+
+  QueryBuilder<MyMeishiHistory, MyMeishiHistory, QDistinct>
       distinctByVersion() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'version');
@@ -646,6 +746,13 @@ extension MyMeishiHistoryQueryProperty
   QueryBuilder<MyMeishiHistory, int, QQueryOperations> meishiIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'meishiId');
+    });
+  }
+
+  QueryBuilder<MyMeishiHistory, DateTime, QQueryOperations>
+      updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'updatedAt');
     });
   }
 
