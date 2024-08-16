@@ -9,4 +9,5 @@ class MyMeishiHistory {
   final meishiId = 1;
   late int version;
   late String imagePath;
+  late DateTime updatedAt;
 }
