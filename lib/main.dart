@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/Introduction/introduction_screen.dart';
 import 'screens/home/home_screen.dart';
+import 'screens/my_page/my_page_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
@@ -45,6 +46,12 @@ class MyApp extends StatelessWidget {
         path: '/home',
         builder: (BuildContext context, GoRouterState state) {
           return const HomeScreen();
+        },
+      ),
+      GoRoute(
+        path: '/mypage',
+        builder: (BuildContext context, GoRouterState state) {
+          return const MyPageScreen();
         },
       ),
       GoRoute(
