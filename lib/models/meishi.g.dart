@@ -22,9 +22,9 @@ const MeishiSchema = CollectionSchema(
       name: r'addedTime',
       type: IsarType.dateTime,
     ),
-    r'imagePath': PropertySchema(
+    r'imageName': PropertySchema(
       id: 1,
-      name: r'imagePath',
+      name: r'imageName',
       type: IsarType.string,
     )
   },
@@ -48,7 +48,7 @@ int _meishiEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.imagePath.length * 3;
+  bytesCount += 3 + object.imageName.length * 3;
   return bytesCount;
 }
 
@@ -59,7 +59,7 @@ void _meishiSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeDateTime(offsets[0], object.addedTime);
-  writer.writeString(offsets[1], object.imagePath);
+  writer.writeString(offsets[1], object.imageName);
 }
 
 Meishi _meishiDeserialize(
@@ -71,7 +71,7 @@ Meishi _meishiDeserialize(
   final object = Meishi();
   object.addedTime = reader.readDateTime(offsets[0]);
   object.id = id;
-  object.imagePath = reader.readString(offsets[1]);
+  object.imageName = reader.readString(offsets[1]);
   return object;
 }
 
@@ -284,20 +284,20 @@ extension MeishiQueryFilter on QueryBuilder<Meishi, Meishi, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathEqualTo(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'imagePath',
+        property: r'imageName',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathGreaterThan(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -305,14 +305,14 @@ extension MeishiQueryFilter on QueryBuilder<Meishi, Meishi, QFilterCondition> {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'imagePath',
+        property: r'imageName',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathLessThan(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -320,14 +320,14 @@ extension MeishiQueryFilter on QueryBuilder<Meishi, Meishi, QFilterCondition> {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'imagePath',
+        property: r'imageName',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathBetween(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -336,7 +336,7 @@ extension MeishiQueryFilter on QueryBuilder<Meishi, Meishi, QFilterCondition> {
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'imagePath',
+        property: r'imageName',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -346,69 +346,69 @@ extension MeishiQueryFilter on QueryBuilder<Meishi, Meishi, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathStartsWith(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'imagePath',
+        property: r'imageName',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathEndsWith(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'imagePath',
+        property: r'imageName',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathContains(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'imagePath',
+        property: r'imageName',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathMatches(
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'imagePath',
+        property: r'imageName',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathIsEmpty() {
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'imagePath',
+        property: r'imageName',
         value: '',
       ));
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imagePathIsNotEmpty() {
+  QueryBuilder<Meishi, Meishi, QAfterFilterCondition> imageNameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'imagePath',
+        property: r'imageName',
         value: '',
       ));
     });
@@ -432,15 +432,15 @@ extension MeishiQuerySortBy on QueryBuilder<Meishi, Meishi, QSortBy> {
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterSortBy> sortByImagePath() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> sortByImageName() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'imagePath', Sort.asc);
+      return query.addSortBy(r'imageName', Sort.asc);
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterSortBy> sortByImagePathDesc() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> sortByImageNameDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'imagePath', Sort.desc);
+      return query.addSortBy(r'imageName', Sort.desc);
     });
   }
 }
@@ -470,15 +470,15 @@ extension MeishiQuerySortThenBy on QueryBuilder<Meishi, Meishi, QSortThenBy> {
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByImagePath() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByImageName() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'imagePath', Sort.asc);
+      return query.addSortBy(r'imageName', Sort.asc);
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByImagePathDesc() {
+  QueryBuilder<Meishi, Meishi, QAfterSortBy> thenByImageNameDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'imagePath', Sort.desc);
+      return query.addSortBy(r'imageName', Sort.desc);
     });
   }
 }
@@ -490,10 +490,10 @@ extension MeishiQueryWhereDistinct on QueryBuilder<Meishi, Meishi, QDistinct> {
     });
   }
 
-  QueryBuilder<Meishi, Meishi, QDistinct> distinctByImagePath(
+  QueryBuilder<Meishi, Meishi, QDistinct> distinctByImageName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'imagePath', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'imageName', caseSensitive: caseSensitive);
     });
   }
 }
@@ -511,9 +511,9 @@ extension MeishiQueryProperty on QueryBuilder<Meishi, Meishi, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Meishi, String, QQueryOperations> imagePathProperty() {
+  QueryBuilder<Meishi, String, QQueryOperations> imageNameProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'imagePath');
+      return query.addPropertyName(r'imageName');
     });
   }
 }
