@@ -51,15 +51,13 @@ class _CameraScreenState extends State<CameraScreen> {
           padding: const EdgeInsets.only(bottom: 60),
           child: Align(
               alignment: Alignment.bottomCenter,
-              child: CaptureButton(
-                onPressed: () async {
-                  final image = await _controller.takePicture();
-                  if (context.mounted) {
-                    context.push(
-                        '/display_picture?imagePath=${Uri.encodeComponent(image.path)}');
-                  }
-                },
-              )),
+              child: CaptureButton(onPressed: () async {
+                final image = await _controller.takePicture();
+                if (context.mounted) {
+                  context.push(
+                      '/display_picture?imageName=${Uri.encodeComponent(image.name)}&imagePath=${Uri.encodeComponent(image.path)}');
+                }
+              })),
         ),
       ],
     );
