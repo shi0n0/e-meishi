@@ -1,9 +1,11 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:e_meishi/components/capture_button.dart';
 import 'dart:ui';
+import 'package:image/image.dart' as img; // image packageのインポート
+import 'dart:io';
+import 'dart:typed_data';
 
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -37,6 +39,9 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width; //端末の横幅
+    final double guideHeight = screenWidth * 5 / 8; // 5:8の比率に基づいて高さを計算
+
     return Stack(
       children: [
         FutureBuilder(
@@ -86,8 +91,8 @@ class _CameraScreenState extends State<CameraScreen> {
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.width * 5 / 8,
+            width: screenWidth,
+            height: guideHeight,
             decoration:
                 BoxDecoration(border: Border.all(color: Colors.blue, width: 3)),
           ),
@@ -98,12 +103,38 @@ class _CameraScreenState extends State<CameraScreen> {
                 alignment: Alignment.bottomCenter,
                 child: CaptureButton(onPressed: () async {
                   final image = await _controller.takePicture();
+                  final croppedImage =
+                      await _cropImage(image, screenWidth, guideHeight);
+
                   if (context.mounted) {
                     context.push(
-                        '/display_picture?imageName=${Uri.encodeComponent(image.name)}&imagePath=${Uri.encodeComponent(image.path)}');
+                        '/display_picture?imageName=${Uri.encodeComponent(croppedImage.name)}&imagePath=${Uri.encodeComponent(croppedImage.path)}');
                   }
                 }))),
       ],
     );
   }
+}
+
+// 画像をガイド枠に合わせてトリミングするメソッド
+Future<XFile> _cropImage(
+    XFile imageFile, double cropWidth, double cropHeight) async {
+  final bytes = await imageFile.readAsBytes();
+  final decodedImage = img.decodeImage(Uint8List.fromList(bytes));
+
+  if (decodedImage != null) {
+    const int cropX = 0;
+    const int cropY = 0;
+    final int width = cropWidth.toInt() * 2;
+    final int height = cropHeight.toInt() * 2;
+
+    final croppedImage = img.copyCrop(decodedImage,
+        x: cropX, y: cropY, width: width, height: height);
+
+    final croppedFile =
+        await File(imageFile.path).writeAsBytes(img.encodeJpg(croppedImage));
+    return XFile(croppedFile.path);
+  }
+
+  return imageFile; // デコードできなかった場合、元の画像を返す
 }
