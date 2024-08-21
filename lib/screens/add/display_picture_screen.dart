@@ -7,7 +7,9 @@ import 'package:e_meishi/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
-  const DisplayPictureScreen({super.key, required this.imagePath});
+  const DisplayPictureScreen(
+      {super.key, required this.imageName, required this.imagePath});
+  final String imageName;
   final String imagePath;
 
   @override
@@ -52,7 +54,7 @@ class DisplayPictureScreen extends StatelessWidget {
                         try {
                           // 非同期処理
                           final meishi = Meishi()
-                            ..imagePath = imagePath
+                            ..imageName = imageName
                             ..addedTime = DateTime.now();
                           final dir = await getApplicationDocumentsDirectory();
                           final isar = await Isar.open(
