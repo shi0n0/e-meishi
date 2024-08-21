@@ -9,8 +9,8 @@ import 'package:path_provider/path_provider.dart';
 class DisplayPictureScreen extends StatelessWidget {
   const DisplayPictureScreen(
       {super.key, required this.imageName, required this.imagePath});
-  final String imageName;
-  final String imagePath;
+  final String imageName; //imageNameはIsarに保存。
+  final String imagePath; //imagePathはプレビューにのみ使用。(都度絶対パスが変更される可能性があるため)
 
   @override
   Widget build(BuildContext context) {
