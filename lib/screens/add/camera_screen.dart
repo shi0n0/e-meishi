@@ -87,8 +87,8 @@ class _CameraScreenState extends State<CameraScreen> {
           alignment: Alignment.topCenter,
           child: Container(
             margin: const EdgeInsets.only(top: 100),
-            width: 300,
-            height: 200,
+            width: 350,
+            height: 350 * 5 / 8,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 3)),
           ),
