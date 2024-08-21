@@ -62,8 +62,10 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: '/display_picture',
         builder: (BuildContext context, GoRouterState state) {
+          final imageName = state.uri.queryParameters['imageName']!;
           final imagePath = state.uri.queryParameters['imagePath']!;
           return DisplayPictureScreen(
+            imageName: imageName,
             imagePath: imagePath,
           );
         },

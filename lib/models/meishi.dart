@@ -6,6 +6,6 @@ part 'meishi.g.dart';
 class Meishi {
   Id id = Isar.autoIncrement;
 
-  late String imagePath;
+  late String imageName;
   late DateTime addedTime;
 }
