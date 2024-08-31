@@ -11,40 +11,37 @@ class MyMeishiView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('マイページ')), // AppBarを追加
-      body: Column(children: [
-        FutureBuilder(
-          future: _loadImage(meishiId),
-          builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
-            // データの取得が進行中かどうかをチェック
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                  child: CircularProgressIndicator()); // ローディングインジケーターを表示
-            }
+    return Column(children: [
+      FutureBuilder(
+        future: _loadImage(meishiId),
+        builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
+          // データの取得が進行中かどうかをチェック
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+                child: CircularProgressIndicator()); // ローディングインジケーターを表示
+          }
 
-            // エラーが発生した場合
-            if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            }
+          // エラーが発生した場合
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
 
-            // データが存在しない場合やnullの場合
-            if (!snapshot.hasData ||
-                snapshot.data == null ||
-                snapshot.data!.isEmpty) {
-              return const Text('No image found');
-            }
+          // データが存在しない場合やnullの場合
+          if (!snapshot.hasData ||
+              snapshot.data == null ||
+              snapshot.data!.isEmpty) {
+            return const Text('No image found');
+          }
 
-            // 画像を表示
-            return Container(
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 3)),
-                child: Image.file(File(snapshot.data!)));
-          },
-        ),
-      ]),
-    );
+          // 画像を表示
+          return Container(
+              margin: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 3)),
+              child: Image.file(File(snapshot.data!)));
+        },
+      ),
+    ]);
   }
 
   Future<String?> _loadImage(int id) async {
