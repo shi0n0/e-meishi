@@ -5,18 +5,28 @@ class Activities extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(), // 内部スクロールを無効にする
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, // グリッドの列数
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-          childAspectRatio: 1),
-      itemCount: 6,
-      itemBuilder: (context, index) {
-        return _buildActivity(index); // 各アイテムをビルドするメソッドを呼び出し
-      },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(left: 16, top: 16),
+          child: Text('アクティビティ',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+        ), // 新しいテキストを追加
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(), // 内部スクロールを無効にする
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, // グリッドの列数
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              childAspectRatio: 1),
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return _buildActivity(index); // 各アイテムをビルドするメソッドを呼び出し
+          },
+        ),
+      ],
     );
   }
 }
