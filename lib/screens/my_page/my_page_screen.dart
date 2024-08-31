@@ -1,3 +1,4 @@
+import 'package:e_meishi/components/activities.dart';
 import 'package:flutter/material.dart';
 import 'package:e_meishi/components/my_meishi_view.dart';
 import 'package:e_meishi/components/transition_button.dart';
@@ -29,6 +30,7 @@ class MyPageScreen extends StatelessWidget {
                 icon: Icons.history,
               ),
             ),
+            Activities()
           ],
         ),
       ),
