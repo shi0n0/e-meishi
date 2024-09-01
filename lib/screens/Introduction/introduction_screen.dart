@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -9,7 +8,7 @@ class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({super.key, required this.onFinished});
 
   @override
-  _IntroductionScreenState createState() => _IntroductionScreenState();
+  State<IntroductionScreen> createState() => _IntroductionScreenState();
 }
 
 class _IntroductionScreenState extends State<IntroductionScreen> {
