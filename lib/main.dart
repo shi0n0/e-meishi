@@ -1,3 +1,4 @@
+import 'package:e_meishi/models/meishi.dart';
 import 'package:e_meishi/screens/add/add_meishi.dart';
 import 'package:e_meishi/screens/add/display_picture_screen.dart';
 import 'screens/management/management_screen.dart';
@@ -10,24 +11,31 @@ import 'screens/my_page/my_page_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart'; // 追加
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final dir = await getApplicationDocumentsDirectory();
+
+  final isar = await Isar.open([MeishiSchema], directory: dir.path);
   final cameras = await availableCameras();
   final firstCamera = cameras.first;
   final prefs = await SharedPreferences.getInstance();
 
   bool firstLaunch = prefs.getBool('first_launch') ?? true; // 初回起動フラグを取得
 
-  runApp(MyApp(firstLaunch: firstLaunch, firstCamera: firstCamera));
+  runApp(MyApp(isar: isar, firstLaunch: firstLaunch, firstCamera: firstCamera));
 }
 
 class MyApp extends StatelessWidget {
+  final Isar isar;
   final bool firstLaunch;
   final CameraDescription firstCamera;
 
   const MyApp({
     super.key,
+    required this.isar,
     required this.firstLaunch,
     required this.firstCamera,
   });
@@ -81,7 +89,7 @@ class MyApp extends StatelessWidget {
         GoRoute(
           path: '/add/meishi',
           builder: (BuildContext context, GoRouterState state) {
-            return AddMeishiScreen(camera: firstCamera);
+            return AddMeishiScreen(camera: firstCamera, isar: isar);
           },
         ),
         GoRoute(
@@ -92,6 +100,7 @@ class MyApp extends StatelessWidget {
             return DisplayPictureScreen(
               imageName: imageName,
               imagePath: imagePath,
+              isar: isar,
             );
           },
         ),

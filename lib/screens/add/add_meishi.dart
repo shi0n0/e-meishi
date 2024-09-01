@@ -1,14 +1,16 @@
 import 'package:camera/camera.dart';
 import 'package:e_meishi/screens/add/camera_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 
 class AddMeishiScreen extends StatefulWidget {
   final CameraDescription camera;
+  final Isar isar;
 
-  const AddMeishiScreen({super.key, required this.camera});
+  const AddMeishiScreen({super.key, required this.camera, required this.isar});
 
   @override
-  _AddMeishiScreenState createState() => _AddMeishiScreenState();
+  State<AddMeishiScreen> createState() => _AddMeishiScreenState();
 }
 
 class _AddMeishiScreenState extends State<AddMeishiScreen> {

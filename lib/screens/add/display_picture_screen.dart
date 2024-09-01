@@ -4,13 +4,16 @@ import 'package:e_meishi/models/meishi.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:e_meishi/utils/utils.dart';
-import 'package:path_provider/path_provider.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
   const DisplayPictureScreen(
-      {super.key, required this.imageName, required this.imagePath});
+      {super.key,
+      required this.imageName,
+      required this.imagePath,
+      required this.isar});
   final String imageName; //imageNameはIsarに保存。
   final String imagePath; //imagePathはプレビューにのみ使用。(都度絶対パスが変更される可能性があるため)
+  final Isar isar;
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +59,6 @@ class DisplayPictureScreen extends StatelessWidget {
                           final meishi = Meishi()
                             ..imageName = imageName
                             ..addedTime = DateTime.now();
-                          final dir = await getApplicationDocumentsDirectory();
-                          final isar = await Isar.open(
-                            [MeishiSchema],
-                            directory: dir.path,
-                          );
 
                           await isar.writeTxn(() async {
                             await isar.meishis.put(meishi);
