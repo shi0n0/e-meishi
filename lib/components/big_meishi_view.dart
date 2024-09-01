@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
-class MyMeishiView extends StatelessWidget {
+class BigMeishiView extends StatelessWidget {
   final int meishiId;
 
-  const MyMeishiView({super.key, required this.meishiId});
+  const BigMeishiView({super.key, required this.meishiId});
 
   @override
   Widget build(BuildContext context) {
