@@ -32,6 +32,34 @@ class MyPageScreen extends StatelessWidget {
               ),
             ),
             Activities(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 2),
+                    child: Expanded(
+                      child: TransitionButton(
+                        buttonText: 'お問い合わせ',
+                        transtion: '/contact',
+                        icon: Icons.outgoing_mail,
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 2),
+                    child: Expanded(
+                      child: TransitionButton(
+                        buttonText: 'よくある質問',
+                        transtion: '/question',
+                        icon: Icons.help,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Request()
           ],
         ),
