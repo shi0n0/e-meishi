@@ -9,7 +9,7 @@ class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({super.key, required this.onFinished});
 
   @override
-  _IntroductionScreenState createState() => _IntroductionScreenState();
+  State<IntroductionScreen> createState() => _IntroductionScreenState();
 }
 
 class _IntroductionScreenState extends State<IntroductionScreen> {
