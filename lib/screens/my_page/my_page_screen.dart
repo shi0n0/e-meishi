@@ -20,7 +20,7 @@ class MyPageScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            MyMeishiView(
+            BigMeishiView(
               meishiId: 1,
             ),
             Padding(
