@@ -1,5 +1,7 @@
 import 'package:e_meishi/screens/add/add_meishi.dart';
 import 'package:e_meishi/screens/add/display_picture_screen.dart';
+import 'screens/management/management_screen.dart';
+import 'screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/Introduction/introduction_screen.dart';
@@ -15,7 +17,7 @@ void main() async {
   final firstCamera = cameras.first;
   final prefs = await SharedPreferences.getInstance();
 
-  bool firstLaunch = prefs.getBool('first_launch') ?? true;
+  bool firstLaunch = prefs.getBool('first_launch') ?? true; // 初回起動フラグを取得
 
   runApp(MyApp(firstLaunch: firstLaunch, firstCamera: firstCamera));
 }
@@ -24,53 +26,77 @@ class MyApp extends StatelessWidget {
   final bool firstLaunch;
   final CameraDescription firstCamera;
 
-  const MyApp(
-      {super.key, required this.firstLaunch, required this.firstCamera});
+  const MyApp({
+    super.key,
+    required this.firstLaunch,
+    required this.firstCamera,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final GoRouter router = GoRouter(initialLocation: '/', routes: [
-      GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return firstLaunch ? const IntroductionScreen() : const HomeScreen();
-        },
-      ),
-      GoRoute(
-        path: '/Introdution',
-        builder: (BuildContext context, GoRouterState state) {
-          return const IntroductionScreen();
-        },
-      ),
-      GoRoute(
-        path: '/home',
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomeScreen();
-        },
-      ),
-      GoRoute(
-        path: '/mypage',
-        builder: (BuildContext context, GoRouterState state) {
-          return const MyPageScreen();
-        },
-      ),
-      GoRoute(
+    final GoRouter router = GoRouter(
+      initialLocation: firstLaunch ? '/introduction' : '/home', // 初期ルートを設定
+      routes: [
+        GoRoute(
+          path: '/introduction',
+          builder: (BuildContext context, GoRouterState state) {
+            return IntroductionScreen(
+              onFinished: () async {
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setBool('first_launch', false); // 初回起動フラグをfalseに更新
+                context.go('/home'); // Home画面へ移動
+              },
+            );
+          },
+        ),
+        ShellRoute(
+          builder: (BuildContext context, GoRouterState state, Widget child) {
+            return MainScreen(
+              state: state,
+              firstLaunch: firstLaunch,
+              child: child,
+            );
+          },
+          routes: <RouteBase>[
+            GoRoute(
+              path: '/home',
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: HomeScreen(),
+              ),
+            ),
+            GoRoute(
+              path: '/management',
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: ManagementScreen(),
+              ),
+            ),
+            GoRoute(
+              path: '/mypage',
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: MyPageScreen(),
+              ),
+            ),
+          ],
+        ),
+        GoRoute(
           path: '/add/meishi',
           builder: (BuildContext context, GoRouterState state) {
             return AddMeishiScreen(camera: firstCamera);
-          }),
-      GoRoute(
-        path: '/display_picture',
-        builder: (BuildContext context, GoRouterState state) {
-          final imageName = state.uri.queryParameters['imageName']!;
-          final imagePath = state.uri.queryParameters['imagePath']!;
-          return DisplayPictureScreen(
-            imageName: imageName,
-            imagePath: imagePath,
-          );
-        },
-      ),
-    ]);
+          },
+        ),
+        GoRoute(
+          path: '/display_picture',
+          builder: (BuildContext context, GoRouterState state) {
+            final imageName = state.uri.queryParameters['imageName']!;
+            final imagePath = state.uri.queryParameters['imagePath']!;
+            return DisplayPictureScreen(
+              imageName: imageName,
+              imagePath: imagePath,
+            );
+          },
+        ),
+      ],
+    );
 
     return MaterialApp.router(
       title: 'e名刺',
