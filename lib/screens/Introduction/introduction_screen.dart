@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class IntroductionScreen extends StatefulWidget {
-  const IntroductionScreen({super.key});
+  final VoidCallback onFinished; // 完了時のコールバックを追加
+
+  const IntroductionScreen({super.key, required this.onFinished});
 
   @override
   _IntroductionScreenState createState() => _IntroductionScreenState();
@@ -113,8 +115,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                     if (_currentPage == 4) {
                       final prefs = await SharedPreferences.getInstance();
                       await prefs.setBool('first_launch', false);
-                      if (!context.mounted) return;
-                      context.go('/home');
+                      widget.onFinished(); // 完了時のコールバックを呼び出す
                     } else {
                       _pageController.nextPage(
                         duration: const Duration(milliseconds: 200),
