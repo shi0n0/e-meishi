@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
             ),
             GoRoute(
               path: '/management',
-              pageBuilder: (context, state) => const NoTransitionPage(
+              pageBuilder: (context, state) => NoTransitionPage(
                 child: ManagementScreen(),
               ),
             ),
