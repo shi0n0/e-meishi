@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
               routes: <GoRoute>[
                 GoRoute(
                   path: 'history',
-                  pageBuilder: (context, state) => const NoTransitionPage(
+                  pageBuilder: (context, state) => NoTransitionPage(
                     child: HistoryScreen(),
                   ),
                 ),
