@@ -30,13 +30,16 @@ class HistoryScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const FittedBox(
-                child: Text(
-                  '現在の名刺',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    fontFamily: 'Hiragino Sans',
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: FittedBox(
+                  child: Text(
+                    '現在の名刺',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      fontFamily: 'Hiragino Sans',
+                    ),
                   ),
                 ),
               ),
@@ -46,13 +49,16 @@ class HistoryScreen extends StatelessWidget {
                 thickness: 1,
                 color: Colors.grey,
               ),
-              const FittedBox(
-                child: Text(
-                  '過去の名刺',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    fontFamily: 'Hiragino Sans',
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: FittedBox(
+                  child: Text(
+                    '過去の名刺',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      fontFamily: 'Hiragino Sans',
+                    ),
                   ),
                 ),
               ),
