@@ -10,7 +10,7 @@ class GridCards extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GridView.builder(
-          shrinkWrap: isScrollable,
+          shrinkWrap: !isScrollable,
           physics: isScrollable
               ? const AlwaysScrollableScrollPhysics()
               : const NeverScrollableScrollPhysics(),
