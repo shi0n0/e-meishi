@@ -27,7 +27,7 @@ class MyPageScreen extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: TransitionButton(
                 buttonText: '過去の名刺を見る',
-                transtion: '/history',
+                transtion: '/mypage/history',
                 icon: Icons.history,
               ),
             ),

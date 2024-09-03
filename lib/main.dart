@@ -1,6 +1,7 @@
 import 'package:e_meishi/models/meishi.dart';
 import 'package:e_meishi/screens/add/add_meishi.dart';
 import 'package:e_meishi/screens/add/display_picture_screen.dart';
+import 'package:e_meishi/screens/history/history_screen.dart';
 import 'screens/management/management_screen.dart';
 import 'screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -83,6 +84,14 @@ class MyApp extends StatelessWidget {
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: MyPageScreen(),
               ),
+              routes: <GoRoute>[
+                GoRoute(
+                  path: 'history',
+                  pageBuilder: (context, state) => NoTransitionPage(
+                    child: HistoryScreen(),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
