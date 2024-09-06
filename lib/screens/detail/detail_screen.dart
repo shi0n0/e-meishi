@@ -8,6 +8,10 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BigMeishiView(meishiId: meishiId);
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(('名刺詳細ページ')),
+        ),
+        body: BigMeishiView(meishiId: meishiId));
   }
 }
