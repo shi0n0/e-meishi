@@ -117,7 +117,9 @@ class MyApp extends StatelessWidget {
         GoRoute(
           path: '/detail',
           builder: (BuildContext context, GoRouterState state) {
-            return const DetailScreen();
+            return const DetailScreen(
+              meishiId: 1,
+            );
           },
         ),
       ],
