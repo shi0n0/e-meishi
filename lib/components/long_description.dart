@@ -17,7 +17,7 @@ class LongDescription extends StatelessWidget {
           ),
           isDense: true,
         ),
-        minLines: 8,
+        minLines: 5,
         maxLines: null,
         keyboardType: TextInputType.multiline);
   }
