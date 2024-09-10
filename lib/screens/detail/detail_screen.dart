@@ -1,5 +1,6 @@
 import 'package:e_meishi/components/big_meishi_view.dart';
 import 'package:e_meishi/components/single_line_description.dart';
+import 'package:e_meishi/components/long_description.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -13,14 +14,21 @@ class DetailScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text(('名刺詳細ページ')),
         ),
-        body: Column(
-          children: [
-            BigMeishiView(meishiId: meishiId),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: OneLineDescription(hintText: '名前'),
-            )
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              BigMeishiView(meishiId: meishiId),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    OneLineDescription(hintText: '名前'),
+                    LongDescription(hintText: '名刺の説明やメモなど'),
+                  ],
+                ),
+              )
+            ],
+          ),
         ));
   }
 }
