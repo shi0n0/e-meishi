@@ -33,7 +33,7 @@ class DetailScreen extends StatelessWidget {
                     ),
                     OneLineDescription(hintText: '所属'),
                     OneLineDescription(hintText: '電話番号'),
-                    LongDescription(hintText: '名刺の説明やメモなど'),
+                    LongDescription(hintText: 'メモなど'),
                   ],
                 ),
               )
