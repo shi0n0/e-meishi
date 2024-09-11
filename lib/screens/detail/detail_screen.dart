@@ -23,6 +23,16 @@ class DetailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     OneLineDescription(hintText: '名前'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(child: OneLineDescription(hintText: '性別')),
+                        SizedBox(width: 8),
+                        Expanded(child: OneLineDescription(hintText: '年齢')),
+                      ],
+                    ),
+                    OneLineDescription(hintText: '所属'),
+                    OneLineDescription(hintText: '電話番号'),
                     LongDescription(hintText: '名刺の説明やメモなど'),
                   ],
                 ),
