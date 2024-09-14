@@ -48,7 +48,6 @@ Future<List<Meishi>> getMeishis(SortOrder sortOrder) async {
     case SortOrder.oldest:
       return await isar.meishis.where().sortByAddedTime().findAll();
     case SortOrder.marked:
-      // マークされた名刺を取得するロジックをここに実装します。例えば:
       return await isar.meishis
           .where()
           .sortByAddedTimeDesc()
