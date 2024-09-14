@@ -4,7 +4,6 @@ import 'package:e_meishi/components/loading_dialog.dart';
 import 'package:e_meishi/components/check_dialog.dart';
 import 'package:e_meishi/components/error_dialog.dart';
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
 
 void showLoadingDialog(BuildContext context, String message) {
   showDialog(
@@ -34,14 +33,27 @@ void showErrorDialog(BuildContext context, String errorMessage) {
       });
 }
 
-/*DB関連*/
-// 新着順リスト形式で名刺を取得
-Future<List<Meishi>> getRecent() async {
-  final Isar? isar = Isar.getInstance(); // Isarインスタンスを取得
+// DB関連
+enum SortOrder { newest, oldest, marked }
+
+Future<List<Meishi>> getMeishis(SortOrder sortOrder) async {
+  final Isar? isar = Isar.getInstance(); // Isarインスタンスを取得、null許容型として扱う
   if (isar == null) {
-    return []; // Isarインスタンスがnullの場合、空のリストを返す
+    throw Exception('Database not available'); // ここでエラーハンドリング、または空のリストを返す等
   }
-  final List<Meishi> meishis =
-      await isar.meishis.where().sortByAddedTimeDesc().findAll(); // 名刺を新着順に取得
-  return meishis;
+
+  switch (sortOrder) {
+    case SortOrder.newest:
+      return await isar.meishis.where().sortByAddedTimeDesc().findAll();
+    case SortOrder.oldest:
+      return await isar.meishis.where().sortByAddedTime().findAll();
+    case SortOrder.marked:
+      // マークされた名刺を取得するロジックをここに実装します。例えば:
+      return await isar.meishis
+          .where()
+          .sortByAddedTimeDesc()
+          .findAll(); //未実装のため仮に新着順を表示
+    default:
+      return [];
+  }
 }
