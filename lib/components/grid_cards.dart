@@ -2,6 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:e_meishi/models/meishi.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:intl/intl.dart';
+
+String formatDate(DateTime? date) {
+  if (date == null) return '日付なし';
+  return DateFormat('M/d').format(date);
+}
 
 class GridCards extends StatelessWidget {
   final List<Meishi> meishis;
@@ -56,7 +62,7 @@ class GridCards extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 4.0, vertical: 2.0),
                         child: Text(
-                          '${meishi.addedTime}',
+                          formatDate(meishi.addedTime),
                           style: const TextStyle(
                               fontSize: 10, color: Colors.white),
                         ),
