@@ -61,14 +61,16 @@ class DetailScreen extends StatelessWidget {
                           ),
                           OneLineDescription(
                             hintText: '所属',
-                            mainText: meishiData?.affiliation ??
-                                '取得できませんでした',
+                            mainText: meishiData?.affiliation ?? '取得できませんでした',
                           ),
                           OneLineDescription(
                             hintText: '電話番号',
                             mainText: meishiData?.phoneNumber ?? '取得できませんでした',
                           ),
-                          const LongDescription(hintText: 'メモなど'),
+                          LongDescription(
+                            hintText: 'メモなど',
+                            mainText: meishiData?.memo ?? '取得できませんでした',
+                          ),
                         ],
                       ),
                     )
