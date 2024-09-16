@@ -48,7 +48,7 @@ class GridCards extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        context.push('/detail');
+                        context.push('/detail/${meishi.id}');
                       },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
