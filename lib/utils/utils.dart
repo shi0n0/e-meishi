@@ -80,6 +80,7 @@ Future<void> saveMeishiData(
   TextEditingController ageController,
   TextEditingController phoneNumberController,
   TextEditingController affiliationController,
+    TextEditingController memoController
 ) async {
   // トランザクションでデータを保存
   await isar.writeTxn(() async {
@@ -93,7 +94,8 @@ Future<void> saveMeishiData(
       ..gender = genderController.text
       ..age = ageController.text
       ..phoneNumber = phoneNumberController.text
-      ..affiliation = affiliationController.text;
+      ..affiliation = affiliationController.text
+      ..memo = memoController.text;
 
     await isar.meishis.put(meishi);
   });
