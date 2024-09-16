@@ -22,6 +22,7 @@ class _DetailScreenState extends State<DetailScreen> {
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _affiliationController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _memoController = TextEditingController();
 
   late Future<Meishi?> _meishiData;
 
@@ -39,6 +40,7 @@ class _DetailScreenState extends State<DetailScreen> {
         _ageController.text = meishi.age;
         _affiliationController.text = meishi.affiliation;
         _phoneNumberController.text = meishi.phoneNumber;
+        _memoController.text = meishi.memo;
       }
     });
   }
@@ -51,6 +53,7 @@ class _DetailScreenState extends State<DetailScreen> {
     _ageController.dispose();
     _affiliationController.dispose();
     _phoneNumberController.dispose();
+    _memoController.dispose();
     super.dispose();
   }
 
@@ -69,7 +72,8 @@ class _DetailScreenState extends State<DetailScreen> {
                       _genderController,
                       _ageController,
                       _phoneNumberController,
-                      _affiliationController)
+                      _affiliationController,
+                      _memoController)
                   .then((_) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('データが保存されました')),
@@ -90,8 +94,6 @@ class _DetailScreenState extends State<DetailScreen> {
               } else if (!snapshot.hasData || snapshot.data == null) {
                 return const Center(child: Text('データが見つかりません')); // データがない場合の表示
               }
-
-              final meishiData = snapshot.data;
 
               return SingleChildScrollView(
                 child: Column(
@@ -131,7 +133,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                           LongDescription(
                             hintText: 'メモなど',
-                            mainText: meishiData?.memo ?? '取得できませんでした',
+                            controller: _memoController,
                           ),
                         ],
                       ),
