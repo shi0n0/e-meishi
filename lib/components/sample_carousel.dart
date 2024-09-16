@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SampleCarousel extends StatelessWidget {
   final String title;
@@ -36,11 +37,17 @@ class SampleCarousel extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: AspectRatio(
                           aspectRatio: 8 / 5, // アイテムのアスペクト比を指定
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5), // 角丸の半径を指定
-                            child: Image.network(
-                              imageUrls[index], // 画像のURLを表示
-                              fit: BoxFit.cover, // 画像をコンテナ全体にフィット
+                          child: InkWell(
+                            onTap: () {
+                              context.push('/detail');
+                            },
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(5), // 角丸の半径を指定
+                              child: Image.network(
+                                imageUrls[index], // 画像のURLを表示
+                                fit: BoxFit.cover, // 画像をコンテナ全体にフィット
+                              ),
                             ),
                           ),
                         ),
