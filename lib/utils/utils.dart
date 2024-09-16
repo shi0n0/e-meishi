@@ -34,10 +34,13 @@ void showErrorDialog(BuildContext context, String errorMessage) {
 }
 
 // DB関連
+
+//取得
+
 enum SortOrder { newest, oldest, marked }
 
 Future<List<Meishi>> getMeishis(SortOrder sortOrder) async {
-  final Isar? isar = Isar.getInstance(); 
+  final Isar? isar = Isar.getInstance();
   if (isar == null) {
     throw Exception('Database not available'); // ここでエラーハンドリング、または空のリストを返す等
   }
@@ -67,4 +70,31 @@ Future<Meishi> getMeishiData(meishiId) async {
     throw Exception('Meishi not found');
   }
   return meishi;
+}
+
+Future<void> saveMeishiData(
+  Isar isar,
+  int meishiId,
+  TextEditingController nameController,
+  TextEditingController genderController,
+  TextEditingController ageController,
+  TextEditingController phoneNumberController,
+  TextEditingController affiliationController,
+) async {
+  // トランザクションでデータを保存
+  await isar.writeTxn(() async {
+    final meishi = await isar.meishis.get(meishiId);
+    if (meishi == null) {
+      throw Exception('Meishi not found');
+    }
+    meishi
+      ..id = meishiId
+      ..userName = nameController.text
+      ..gender = genderController.text
+      ..age = ageController.text
+      ..phoneNumber = phoneNumberController.text
+      ..affiliation = affiliationController.text;
+
+    await isar.meishis.put(meishi);
+  });
 }
