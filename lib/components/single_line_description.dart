@@ -2,28 +2,17 @@ import 'package:flutter/material.dart';
 
 class OneLineDescription extends StatefulWidget {
   final String hintText;
-  final String mainText;
+  final TextEditingController controller;
+
   const OneLineDescription(
-      {super.key, required this.hintText, required this.mainText});
+      {super.key, required this.hintText, required this.controller});
 
   @override
   State<OneLineDescription> createState() => _OneLineDescriptionState();
 }
 
 class _OneLineDescriptionState extends State<OneLineDescription> {
-  final TextEditingController _controller = TextEditingController(text: '');
 
-  @override
-  void initState() {
-    super.initState();
-    _controller.text = widget.mainText;
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +29,7 @@ class _OneLineDescriptionState extends State<OneLineDescription> {
             ),
           ),
           TextField(
-            controller: _controller,
+            controller: widget.controller,
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[200],
