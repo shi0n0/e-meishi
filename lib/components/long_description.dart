@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
 
-class LongDescription extends StatelessWidget {
+class LongDescription extends StatefulWidget {
   final String hintText;
-  const LongDescription({super.key, required this.hintText});
+  final String mainText;
+  const LongDescription(
+      {super.key, required this.hintText, required this.mainText});
+
+  @override
+  State<LongDescription> createState() => _LongDescriptionState();
+}
+
+class _LongDescriptionState extends State<LongDescription> {
+  final TextEditingController _controller = TextEditingController(text: '');
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text = widget.mainText;
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +35,12 @@ class LongDescription extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Text(
-              hintText,
+              widget.hintText,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
           ),
           TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[200],
