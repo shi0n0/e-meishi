@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class OneLineDescription extends StatelessWidget {
   final String hintText;
-  const OneLineDescription({super.key, required this.hintText});
+  final String mainText;
+  const OneLineDescription({super.key, required this.hintText, required this.mainText});
 
   @override
   Widget build(BuildContext context) {
