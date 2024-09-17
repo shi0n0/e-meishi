@@ -84,7 +84,8 @@ class _DetailScreenState extends State<DetailScreen> {
               icon: const Icon(Icons.delete),
               color: Colors.red,
               onPressed: () {
-                showConfirmDialog(context, 'この名刺を削除します。\n削除すると二度と復元はできません。');
+                showConfirmDialog(
+                    context, 'この名刺を削除します。\n削除すると二度と復元はできません。', widget.meishiId);
               },
             )
           ],
