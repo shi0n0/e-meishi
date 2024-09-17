@@ -58,7 +58,13 @@ class DisplayPictureScreen extends StatelessWidget {
                           // 非同期処理
                           final meishi = Meishi()
                             ..imageName = imageName
-                            ..addedTime = DateTime.now();
+                            ..addedTime = DateTime.now()
+                            ..userName = ''
+                            ..age = ''
+                            ..gender = ''
+                            ..affiliation = ''
+                            ..phoneNumber = ''
+                            ..memo = '';
 
                           await isar.writeTxn(() async {
                             await isar.meishis.put(meishi);
