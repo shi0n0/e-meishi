@@ -34,12 +34,16 @@ void showErrorDialog(BuildContext context, String errorMessage) {
       });
 }
 
-void showConfirmDialog(BuildContext context, String confirmMessage) {
+void showConfirmDialog(
+    BuildContext context, String confirmMessage, int meishiId) {
   showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return ConfirmDialog(confirmMessage: confirmMessage);
+        return ConfirmDialog(
+          confirmMessage: confirmMessage,
+          meishiId: meishiId,
+        );
       });
 }
 
@@ -83,15 +87,14 @@ Future<Meishi> getMeishiData(meishiId) async {
 }
 
 Future<void> saveMeishiData(
-  Isar isar,
-  int meishiId,
-  TextEditingController nameController,
-  TextEditingController genderController,
-  TextEditingController ageController,
-  TextEditingController phoneNumberController,
-  TextEditingController affiliationController,
-    TextEditingController memoController
-) async {
+    Isar isar,
+    int meishiId,
+    TextEditingController nameController,
+    TextEditingController genderController,
+    TextEditingController ageController,
+    TextEditingController phoneNumberController,
+    TextEditingController affiliationController,
+    TextEditingController memoController) async {
   // トランザクションでデータを保存
   await isar.writeTxn(() async {
     final meishi = await isar.meishis.get(meishiId);
@@ -108,5 +111,16 @@ Future<void> saveMeishiData(
       ..memo = memoController.text;
 
     await isar.meishis.put(meishi);
+  });
+}
+
+void deleteMeishi(int meishiId) async {
+  final Isar? isar = Isar.getInstance();
+  if (isar == null) {
+    throw Exception('Database not available');
+  }
+
+  await isar.writeTxn(() async {
+    await isar.meishis.delete(meishiId);
   });
 }
