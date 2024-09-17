@@ -1,3 +1,4 @@
+import 'package:e_meishi/components/confirm_dialog.dart';
 import 'package:e_meishi/models/meishi.dart';
 import 'package:flutter/material.dart';
 import 'package:e_meishi/components/loading_dialog.dart';
@@ -30,6 +31,15 @@ void showErrorDialog(BuildContext context, String errorMessage) {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return ErrorDialog(errorMessage: errorMessage);
+      });
+}
+
+void showConfirmDialog(BuildContext context, String confirmMessage) {
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return ConfirmDialog(confirmMessage: confirmMessage);
       });
 }
 
