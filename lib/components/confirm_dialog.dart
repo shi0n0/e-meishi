@@ -1,9 +1,13 @@
+import 'package:e_meishi/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ConfirmDialog extends StatelessWidget {
   final String confirmMessage;
+  final int meishiId;
 
-  const ConfirmDialog({super.key, required this.confirmMessage});
+  const ConfirmDialog(
+      {super.key, required this.confirmMessage, required this.meishiId});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +36,8 @@ class ConfirmDialog extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true).pop();
+                    deleteMeishi(meishiId);
+                    context.pop();
                   },
                   child: const Text('削除する'),
                 )
