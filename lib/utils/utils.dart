@@ -1,3 +1,4 @@
+import 'package:e_meishi/components/confirm_dialog.dart';
 import 'package:e_meishi/models/meishi.dart';
 import 'package:flutter/material.dart';
 import 'package:e_meishi/components/loading_dialog.dart';
@@ -33,11 +34,27 @@ void showErrorDialog(BuildContext context, String errorMessage) {
       });
 }
 
+void showConfirmDialog(
+    BuildContext context, String confirmMessage, int meishiId) {
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return ConfirmDialog(
+          confirmMessage: confirmMessage,
+          meishiId: meishiId,
+        );
+      });
+}
+
 // DB関連
+
+//取得
+
 enum SortOrder { newest, oldest, marked }
 
 Future<List<Meishi>> getMeishis(SortOrder sortOrder) async {
-  final Isar? isar = Isar.getInstance(); // Isarインスタンスを取得、null許容型として扱う
+  final Isar? isar = Isar.getInstance();
   if (isar == null) {
     throw Exception('Database not available'); // ここでエラーハンドリング、または空のリストを返す等
   }
@@ -55,4 +72,55 @@ Future<List<Meishi>> getMeishis(SortOrder sortOrder) async {
     default:
       return [];
   }
+}
+
+Future<Meishi> getMeishiData(meishiId) async {
+  final Isar? isar = Isar.getInstance();
+  if (isar == null) {
+    throw Exception('Database not available');
+  }
+  final meishi = await isar.meishis.get(meishiId);
+  if (meishi == null) {
+    throw Exception('Meishi not found');
+  }
+  return meishi;
+}
+
+Future<void> saveMeishiData(
+    Isar isar,
+    int meishiId,
+    TextEditingController nameController,
+    TextEditingController genderController,
+    TextEditingController ageController,
+    TextEditingController phoneNumberController,
+    TextEditingController affiliationController,
+    TextEditingController memoController) async {
+  // トランザクションでデータを保存
+  await isar.writeTxn(() async {
+    final meishi = await isar.meishis.get(meishiId);
+    if (meishi == null) {
+      throw Exception('Meishi not found');
+    }
+    meishi
+      ..id = meishiId
+      ..userName = nameController.text
+      ..gender = genderController.text
+      ..age = ageController.text
+      ..phoneNumber = phoneNumberController.text
+      ..affiliation = affiliationController.text
+      ..memo = memoController.text;
+
+    await isar.meishis.put(meishi);
+  });
+}
+
+void deleteMeishi(int meishiId) async {
+  final Isar? isar = Isar.getInstance();
+  if (isar == null) {
+    throw Exception('Database not available');
+  }
+
+  await isar.writeTxn(() async {
+    await isar.meishis.delete(meishiId);
+  });
 }

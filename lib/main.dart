@@ -117,11 +117,10 @@ class MyApp extends StatelessWidget {
           },
         ),
         GoRoute(
-          path: '/detail',
+          path: '/detail/:id',
           builder: (BuildContext context, GoRouterState state) {
-            return const DetailScreen(
-              meishiId: 1,
-            );
+            return DetailScreen(
+                meishiId: int.parse(state.pathParameters['id']!));
           },
         ),
       ],

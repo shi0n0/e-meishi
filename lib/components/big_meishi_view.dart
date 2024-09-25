@@ -1,5 +1,6 @@
 import 'package:e_meishi/models/meishi.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'dart:io';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
@@ -38,7 +39,11 @@ class BigMeishiView extends StatelessWidget {
               margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey, width: 3)),
-              child: Image.file(File(snapshot.data!)));
+              child: InkWell(
+                  onTap: () {
+                    context.push('/detail');
+                  },
+                  child: Image.file(File(snapshot.data!))));
         },
       ),
     ]);

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:e_meishi/models/meishi.dart';
+import 'package:go_router/go_router.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:intl/intl.dart';
 
@@ -45,13 +46,18 @@ class GridCards extends StatelessWidget {
                   snapshot.hasData) {
                 return Stack(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.file(
-                        File(snapshot.data!),
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
+                    InkWell(
+                      onTap: () {
+                        context.push('/detail/${meishi.id}');
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.file(
+                          File(snapshot.data!),
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: double.infinity,
+                        ),
                       ),
                     ),
                     Positioned(
