@@ -21,7 +21,6 @@ class SampleCarousel extends StatelessWidget {
             child: Text(
               title, // カルーセルのタイトル
               style: const TextStyle(
-                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
