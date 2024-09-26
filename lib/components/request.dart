@@ -13,7 +13,6 @@ class Request extends StatelessWidget {
         child: Text(
           'こちらもお願いします',
           style: TextStyle(
-            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),

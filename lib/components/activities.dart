@@ -10,8 +10,7 @@ class Activities extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.only(left: 16, top: 16),
-          child: Text('アクティビティ',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+          child: Text('アクティビティ', style: TextStyle(fontWeight: FontWeight.bold)),
         ), // 新しいテキストを追加
         GridView.builder(
           shrinkWrap: true,
