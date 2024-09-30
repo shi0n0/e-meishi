@@ -1,5 +1,6 @@
 import 'package:e_meishi/components/activities.dart';
 import 'package:e_meishi/components/request.dart';
+import 'package:e_meishi/components/settings_button.dart';
 import 'package:e_meishi/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:e_meishi/components/big_meishi_view.dart';
@@ -47,6 +48,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
         shape: const Border(
           bottom: BorderSide(color: Colors.black12, width: 0.5),
         ),
+        actions: const [SettingsButton()],
       ),
       body: const SingleChildScrollView(
         child: Column(
