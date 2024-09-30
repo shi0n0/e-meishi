@@ -12,7 +12,13 @@ class MyPageScreen extends StatelessWidget {
     return Scaffold(
       // Scaffoldで画面全体を構成
       appBar: AppBar(
-        title: const Text('マイページ'),
+        title: const Text(
+          '田中 太郎',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+        ),
+        shape: const Border(
+          bottom: BorderSide(color: Colors.black12, width: 0.5),
+        ),
       ),
       body: const SingleChildScrollView(
         child: Column(
