@@ -89,11 +89,10 @@ class MyApp extends StatelessWidget {
               ),
               routes: <GoRoute>[
                 GoRoute(
-                  path: 'history',
-                  pageBuilder: (context, state) => NoTransitionPage(
-                    child: HistoryScreen(),
-                  ),
-                ),
+                    path: 'history',
+                    builder: (BuildContext context, GoRouterState state) {
+                      return HistoryScreen();
+                    }),
               ],
             ),
           ],
