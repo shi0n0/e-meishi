@@ -24,7 +24,7 @@ class HistoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           '名刺履歴',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       body: const Padding(
