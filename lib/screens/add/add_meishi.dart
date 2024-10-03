@@ -17,7 +17,11 @@ class _AddMeishiScreenState extends State<AddMeishiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('名刺を撮影')),
+      appBar: AppBar(
+          title: const Text(
+        '名刺撮影',
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      )),
       body: Stack(
         children: [
           CameraScreen(camera: widget.camera),
