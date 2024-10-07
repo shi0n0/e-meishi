@@ -5,7 +5,13 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          '設定',
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 }
