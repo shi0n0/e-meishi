@@ -22,15 +22,18 @@ class HistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('名刺履歴'),
+        title: const Text(
+          '名刺履歴',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: FittedBox(
                   child: Text(
@@ -43,13 +46,13 @@ class HistoryScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const BigMeishiView(meishiId: 1),
-              const SizedBox(height: 8.0), // Dividerとのスペースを作る
-              const Divider(
+              BigMeishiView(meishiId: 1),
+              SizedBox(height: 8.0), // Dividerとのスペースを作る
+              Divider(
                 thickness: 1,
                 color: Colors.grey,
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: FittedBox(
                   child: Text(
@@ -62,10 +65,10 @@ class HistoryScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              GridCards(
-                list: list,
-                isScrollable: false,
-              )
+              // GridCards(
+              //   list: list,
+              //   isScrollable: false,
+              // )
             ],
           ),
         ),

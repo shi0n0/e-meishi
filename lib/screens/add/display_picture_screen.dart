@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:e_meishi/components/cancel_button.dart';
 import 'package:isar/isar.dart';
 import 'package:e_meishi/models/meishi.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +26,11 @@ class DisplayPictureScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('撮影した写真'),
-          automaticallyImplyLeading: false,
-        ),
+            title: const Text(
+              'プレビュー',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            leading: const CancelButton(targetScreen: '/home')),
         body: Stack(
           children: [
             Image.file(File(imagePath)),

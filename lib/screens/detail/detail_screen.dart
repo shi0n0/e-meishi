@@ -61,7 +61,11 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(('名刺詳細ページ')),
+          title: const Text(
+            '名刺詳細ページ',
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
           actions: [
             IconButton(
               icon: const Icon(Icons.save),

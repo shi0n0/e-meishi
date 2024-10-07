@@ -1,4 +1,6 @@
+import 'package:e_meishi/components/notification_button.dart';
 import 'package:e_meishi/components/sample_carousel.dart';
+import 'package:e_meishi/components/settings_button.dart';
 import 'package:flutter/material.dart';
 import 'package:e_meishi/components/big_meishi_view.dart';
 import 'package:e_meishi/components/add_meishi_button.dart';
@@ -10,7 +12,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('ホーム')),
+      appBar: AppBar(
+        centerTitle: false,
+        title: const Text(
+          'e名刺',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        actions: const [NotificationButton(), SettingsButton()],
+      ),
       body: const Stack(
         children: [
           SingleChildScrollView(
