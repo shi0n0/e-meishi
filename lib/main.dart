@@ -3,6 +3,7 @@ import 'package:e_meishi/screens/add/add_meishi.dart';
 import 'package:e_meishi/screens/add/display_picture_screen.dart';
 import 'package:e_meishi/screens/detail/detail_screen.dart';
 import 'package:e_meishi/screens/history/history_screen.dart';
+import 'package:e_meishi/screens/setting/setting_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'screens/management/management_screen.dart';
 import 'screens/main/main_screen.dart';
@@ -122,6 +123,11 @@ class MyApp extends StatelessWidget {
                 meishiId: int.parse(state.pathParameters['id']!));
           },
         ),
+        GoRoute(
+            path: '/setting',
+            builder: (BuildContext context, GoRouterState state) {
+              return const SettingScreen();
+            }),
       ],
     );
 
