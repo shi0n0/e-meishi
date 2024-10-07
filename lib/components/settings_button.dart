@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsButton extends StatelessWidget {
   const SettingsButton({super.key});
@@ -7,7 +8,9 @@ class SettingsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.settings),
-      onPressed: () {},
+      onPressed: () {
+        context.push('/setting');
+      },
     );
   }
 }
