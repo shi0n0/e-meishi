@@ -9,7 +9,7 @@ class SettingsButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.settings),
       onPressed: () {
-        context.go('/setting');
+        context.push('/setting');
       },
     );
   }
