@@ -12,6 +12,25 @@ class SettingScreen extends StatelessWidget {
           style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.privacy_tip),
+                title: const Text('テキスト'),
+                trailing: const Icon(Icons.arrow_right),
+                dense: true,
+                onTap: () {},
+              ),
+              const Divider(
+                height: 0,
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
