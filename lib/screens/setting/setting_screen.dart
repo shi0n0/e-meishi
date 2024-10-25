@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+  final List<String> _items = [
+    'アイテム1',
+    'アイテム2',
+    'アイテム3',
+    'アイテム4',
+    'アイテム5',
+    'アイテム6',
+    'アイテム7',
+    'アイテム8',
+    'アイテム9',
+    'アイテム10',
+  ];
+
+  SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +29,13 @@ class SettingScreen extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: _items.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
               ListTile(
                 leading: const Icon(Icons.privacy_tip),
-                title: const Text('テキスト'),
+                title: Text(_items[index]),
                 trailing: const Icon(Icons.arrow_right),
                 dense: true,
                 onTap: () {},
