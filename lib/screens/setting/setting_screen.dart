@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatelessWidget {
-  final List<String> _items = [
-    'アイテム1',
-    'アイテム2',
-    'アイテム3',
-    'アイテム4',
-    'アイテム5',
-    'アイテム6',
-    'アイテム7',
-    'アイテム8',
-    'アイテム9',
-    'アイテム10',
-  ];
+  final Map<String, List<String>> _categories = {
+    '一般設定': ['e名刺について', 'アプリのバージョン', '言語設定'],
+    'プライバシー': ['個人情報保護方針'],
+    'サポート': ['ヘルプ', 'ご意見や不具合のご報告']
+  };
 
   SettingScreen({super.key});
 
@@ -25,27 +18,41 @@ class SettingScreen extends StatelessWidget {
         ),
         title: const Text(
           '設定',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView.builder(
-        itemCount: _items.length,
-        itemBuilder: (context, index) {
+      body: ListView(
+        children: _categories.entries.map((category) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListTile(
-                leading: const Icon(Icons.privacy_tip),
-                title: Text(_items[index]),
-                trailing: const Icon(Icons.arrow_right),
-                dense: true,
-                onTap: () {},
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                child: Text(
+                  category.key,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              const Divider(
-                height: 0,
-              ),
+              ...category.value.map((item) {
+                return Column(
+                  children: [
+                    ListTile(
+                      leading: const Icon(Icons.privacy_tip),
+                      title: Text(item),
+                      trailing: const Icon(Icons.arrow_right),
+                      dense: true,
+                      onTap: () {},
+                    ),
+                    const Divider(height: 0),
+                  ],
+                );
+              }),
             ],
           );
-        },
+        }).toList(),
       ),
     );
   }
