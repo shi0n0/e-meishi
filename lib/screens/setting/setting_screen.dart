@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatelessWidget {
-  final Map<String, List<String>> _categories = {
-    '一般設定': ['e名刺について', 'アプリのバージョン', '言語設定'],
-    'プライバシー': ['個人情報保護方針'],
-    'サポート': ['ヘルプ', 'ご意見や不具合のご報告']
+  final Map<String, List<Map<String, dynamic>>> _categories = {
+    '一般設定': [
+      {'name': 'e名刺について', 'icon': Icons.info},
+      {'name': 'アプリのバージョン', 'icon': Icons.system_update},
+      {'name': '言語設定', 'icon': Icons.language},
+    ],
+    'プライバシー': [
+      {'name': '個人情報保護方針', 'icon': Icons.privacy_tip},
+    ],
+    'サポート': [
+      {'name': 'ヘルプ', 'icon': Icons.help},
+      {'name': 'ご意見や不具合のご報告', 'icon': Icons.feedback},
+    ],
   };
 
   SettingScreen({super.key});
@@ -40,8 +49,8 @@ class SettingScreen extends StatelessWidget {
                 return Column(
                   children: [
                     ListTile(
-                      leading: const Icon(Icons.privacy_tip),
-                      title: Text(item),
+                      leading: Icon(item['icon']),
+                      title: Text(item['name']),
                       trailing: const Icon(Icons.arrow_right),
                       dense: true,
                       onTap: () {},
