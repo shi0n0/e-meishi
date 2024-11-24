@@ -126,7 +126,7 @@ class MyApp extends StatelessWidget {
         GoRoute(
             path: '/setting',
             builder: (BuildContext context, GoRouterState state) {
-              return const SettingScreen();
+              return SettingScreen();
             }),
       ],
     );
