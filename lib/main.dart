@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:e_meishi/models/meishi.dart';
 import 'package:e_meishi/screens/add/add_meishi.dart';
 import 'package:e_meishi/screens/add/display_picture_screen.dart';
@@ -5,18 +6,19 @@ import 'package:e_meishi/screens/detail/detail_screen.dart';
 import 'package:e_meishi/screens/history/history_screen.dart';
 import 'package:e_meishi/screens/setting/setting_screen.dart';
 import 'package:flutter/foundation.dart';
-import 'screens/management/management_screen.dart';
-import 'screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'screens/Introduction/introduction_screen.dart';
-import 'screens/home/home_screen.dart';
-import 'screens/my_page/my_page_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:camera/camera.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart'; // 追加
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'screens/Introduction/introduction_screen.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/main/main_screen.dart';
+import 'screens/management/management_screen.dart';
+import 'screens/my_page/my_page_screen.dart';
+import 'screens/terms_of_service/terms_of_service_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -126,8 +128,16 @@ class MyApp extends StatelessWidget {
         GoRoute(
             path: '/setting',
             builder: (BuildContext context, GoRouterState state) {
-              return SettingScreen();
-            }),
+              return const SettingScreen();
+            },
+            routes: <GoRoute>[
+              GoRoute(
+                path: 'terms_of_service',
+                builder: (BuildContext context, GoRouterState state) {
+                  return const TermsOfServiceScreen();
+                },
+              ),
+            ]),
       ],
     );
 
